@@ -9,7 +9,7 @@ public class Main {
 		List<Object> agencyList = new ArrayList<Object>();
         
 		
-		ArrayList<String> arrayList = readInput("src/in.txt");
+		ArrayList<String> arrayList = readInput(args[0]);
 		for(int i = 0;i < arrayList.size();i++) {
 			String str = (String)arrayList.get(i);
 			String num = getNum(str);
@@ -31,16 +31,16 @@ public class Main {
 			List<String> a = new ArrayList<String>(); 
 			
 			Map<String, Object> agencyMap = new HashMap<>();
-	        agencyMap.put("ĞÕÃû",name);
-	        agencyMap.put("ÊÖ»ú", num);
-	        agencyMap.put("µØÖ·", list);
+	        agencyMap.put("å§“å",name);
+	        agencyMap.put("æ‰‹æœº", num);
+	        agencyMap.put("åœ°å€", list);
 	        agencyList.add(agencyMap);
 	        
 	        
 		}
 		JSONArray jsonObject = JSONArray.fromObject(agencyList);
         String jsonString1 = jsonObject.toString();
-        CreateFileUtil.createJsonFile(jsonString1, "C:\\Users\\CYH\\Desktop\\", "ans");
+        CreateFileUtil.createJsonFile(jsonString1, args[1], "ans");
 		
 //		
 //		String s = jsonRead();
@@ -51,7 +51,7 @@ public class Main {
 	}
 	
 	public static List<String> divideAddress1(String address){
-        String regex="(?<province>[^Ê¡]+×ÔÖÎÇø|.*?Ê¡|.*?ĞĞÕşÇø|.*?ÊĞ)(?<city>[^ÊĞ]+×ÔÖÎÖİ|.*?µØÇø|.*?ĞĞÕşµ¥Î»|.+ÃË|ÊĞÏ½Çø|.*?ÊĞ|.*?ÏØ)(?<county>[^ÏØ]+ÏØ|.+Çø|.+ÊĞ|.+Æì|.+º£Óò|.+µº)?(?<town>[^Çø]+Çø|.+Õò|.+½ÖµÀ)?(?<village>.*)";
+        String regex="(?<province>[^çœ]+è‡ªæ²»åŒº|.*?çœ|.*?è¡Œæ”¿åŒº|.*?å¸‚)(?<city>[^å¸‚]+è‡ªæ²»å·|.*?åœ°åŒº|.*?è¡Œæ”¿å•ä½|.+ç›Ÿ|å¸‚è¾–åŒº|.*?å¸‚|.*?å¿)(?<county>[^å¿]+å¿|.+åŒº|.+å¸‚|.+æ——|.+æµ·åŸŸ|.+å²›)?(?<town>[^åŒº]+åŒº|.+é•‡|.+è¡—é“)?(?<village>.*)";
         Matcher m=Pattern.compile(regex).matcher(address);
         String province=null,city=null,county=null,town=null,village=null;
         List<String> list=new ArrayList<String>();
@@ -75,10 +75,10 @@ public class Main {
     }
 	
 	public static List<String> divideAddress2(String address){
-        String regex="(?<province>[^Ê¡]+×ÔÖÎÇø|.*?Ê¡|.*?ĞĞÕşÇø|.*?ÊĞ)(?<city>[^ÊĞ]+"
-        		+ "×ÔÖÎÖİ|.*?µØÇø|.*?ĞĞÕşµ¥Î»|.+ÃË|ÊĞÏ½Çø|.*?ÊĞ|.*?ÏØ)(?<county>[^ÏØ]+"
-        		+ "ÏØ|.+Çø|.+ÊĞ|.+Æì|.+º£Óò|.+µº)?(?<town>[^Çø]+Çø|.+Õò|.+½ÖµÀ)?(?<road>[^Â·]+Â·|.+½Ö|.+Ïï)"
-        		+ "?(?<doorplate>[^ºÅ]+ºÅ)?(?<village>.*)";
+        String regex="(?<province>[^çœ]+è‡ªæ²»åŒº|.*?çœ|.*?è¡Œæ”¿åŒº|.*?å¸‚)(?<city>[^å¸‚]+"
+        		+ "è‡ªæ²»å·|.*?åœ°åŒº|.*?è¡Œæ”¿å•ä½|.+ç›Ÿ|å¸‚è¾–åŒº|.*?å¸‚|.*?å¿)(?<county>[^å¿]+"
+        		+ "å¿|.+åŒº|.+å¸‚|.+æ——|.+æµ·åŸŸ|.+å²›)?(?<town>[^åŒº]+åŒº|.+é•‡|.+è¡—é“)?(?<road>[^è·¯]+è·¯|.+è¡—|.+å··)"
+        		+ "?(?<doorplate>[^å·]+å·)?(?<village>.*)";
         Matcher m=Pattern.compile(regex).matcher(address);
         String province=null,city=null,county=null,town=null,road=null,doorplate=null,village=null;
         List<String> list=new ArrayList<String>();
@@ -107,13 +107,13 @@ public class Main {
     }
 	
 	public static ArrayList<String> readInput(String name) {
-		// Ê¹ÓÃArrayListÀ´´æ´¢Ã¿ĞĞ¶ÁÈ¡µ½µÄ×Ö·û´®
+		// ä½¿ç”¨ArrayListæ¥å­˜å‚¨æ¯è¡Œè¯»å–åˆ°çš„å­—ç¬¦ä¸²
 		ArrayList<String> arrayList = new ArrayList<>();
 		try {
 			FileReader fr = new FileReader(name);
 			BufferedReader bf = new BufferedReader(fr);
 			String str;
-			// °´ĞĞ¶ÁÈ¡×Ö·û´®
+			// æŒ‰è¡Œè¯»å–å­—ç¬¦ä¸²
 			while ((str = bf.readLine()) != null) {
 				arrayList.add(str);
 			}
@@ -128,13 +128,13 @@ public class Main {
 
 	
 	public static String jsonRead() throws Exception {
-        File file = new File("pcas.json");//¶¨ÒåÒ»¸öfile¶ÔÏó£¬ÓÃÀ´³õÊ¼»¯FileReader
-        FileReader reader = new FileReader(file);//¶¨ÒåÒ»¸öfileReader¶ÔÏó£¬ÓÃÀ´³õÊ¼»¯BufferedReader
-        BufferedReader bReader = new BufferedReader(reader);//newÒ»¸öBufferedReader¶ÔÏó£¬½«ÎÄ¼şÄÚÈİ¶ÁÈ¡µ½»º´æ
-        StringBuilder sb = new StringBuilder();//¶¨ÒåÒ»¸ö×Ö·û´®»º´æ£¬½«×Ö·û´®´æ·Å»º´æÖĞ
+        File file = new File("pcas.json");//å®šä¹‰ä¸€ä¸ªfileå¯¹è±¡ï¼Œç”¨æ¥åˆå§‹åŒ–FileReader
+        FileReader reader = new FileReader(file);//å®šä¹‰ä¸€ä¸ªfileReaderå¯¹è±¡ï¼Œç”¨æ¥åˆå§‹åŒ–BufferedReader
+        BufferedReader bReader = new BufferedReader(reader);//newä¸€ä¸ªBufferedReaderå¯¹è±¡ï¼Œå°†æ–‡ä»¶å†…å®¹è¯»å–åˆ°ç¼“å­˜
+        StringBuilder sb = new StringBuilder();//å®šä¹‰ä¸€ä¸ªå­—ç¬¦ä¸²ç¼“å­˜ï¼Œå°†å­—ç¬¦ä¸²å­˜æ”¾ç¼“å­˜ä¸­
         String s = "";
-        while ((s =bReader.readLine()) != null) {//ÖğĞĞ¶ÁÈ¡ÎÄ¼şÄÚÈİ£¬²»¶ÁÈ¡»»ĞĞ·ûºÍÄ©Î²µÄ¿Õ¸ñ
-            sb.append(s + "\n");//½«¶ÁÈ¡µÄ×Ö·û´®Ìí¼Ó»»ĞĞ·ûºóÀÛ¼Ó´æ·ÅÔÚ»º´æÖĞ
+        while ((s =bReader.readLine()) != null) {//é€è¡Œè¯»å–æ–‡ä»¶å†…å®¹ï¼Œä¸è¯»å–æ¢è¡Œç¬¦å’Œæœ«å°¾çš„ç©ºæ ¼
+            sb.append(s + "\n");//å°†è¯»å–çš„å­—ç¬¦ä¸²æ·»åŠ æ¢è¡Œç¬¦åç´¯åŠ å­˜æ”¾åœ¨ç¼“å­˜ä¸­
             System.out.println(s);
         }
         bReader.close();
@@ -190,7 +190,7 @@ public class Main {
 			obj[0] = sb.toString();
 			obj[1] = delCount;
 		}else {
-			//²»´æÔÚ·µ»Ø-1
+			//ä¸å­˜åœ¨è¿”å›-1
 			obj[0] = -1;
 			obj[1] = -1;
 		}
